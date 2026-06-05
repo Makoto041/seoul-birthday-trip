@@ -1277,6 +1277,389 @@
       .dlede .dtitle {
         margin-top: 0;
       }
+
+      /* ===== Photo Album Section ===== */
+      .album-section {
+        max-width: 100%;
+        padding: 3rem 1rem;
+        background: linear-gradient(180deg, #e9f8ff 0%, #f4fcff 100%);
+      }
+      .album-inner {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .album-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .album-header h2 {
+        font-family: var(--disp);
+        font-weight: 700;
+        color: var(--ink);
+        font-size: clamp(1.4rem, 4vw, 1.9rem);
+        margin: 0 0 0.5rem;
+      }
+      .album-header p {
+        color: var(--tx2);
+        font-size: 0.9rem;
+      }
+      .day-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.2rem;
+      }
+      .day-tab {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 999px;
+        background: var(--glass);
+        backdrop-filter: blur(8px);
+        font: 600 0.8rem/1 var(--body);
+        color: var(--ink2);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .day-tab:hover {
+        background: #fff;
+      }
+      .day-tab.active {
+        background: linear-gradient(90deg, var(--sky2), var(--azure));
+        color: #fff;
+      }
+      .polaroid-board {
+        position: relative;
+        min-height: 400px;
+        background: linear-gradient(145deg, rgba(255,255,255,0.3), rgba(230,245,255,0.5));
+        border-radius: var(--r-lg);
+        padding: 1rem;
+        overflow: hidden;
+        transition: all 0.3s;
+      }
+      .polaroid-board.dragover {
+        background: rgba(127, 211, 255, 0.2);
+        box-shadow: inset 0 0 0 3px var(--sky2);
+      }
+      .polaroid-board.empty {
+        min-height: 320px;
+        border: 2px dashed var(--sky2);
+        background: rgba(255, 255, 255, 0.6);
+      }
+      .board-empty-state {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        text-align: center;
+        padding: 2rem;
+      }
+      .polaroid-board:not(.empty) .board-empty-state {
+        display: none;
+      }
+      .board-empty-state svg {
+        width: 56px;
+        height: 56px;
+        color: var(--sky2);
+        opacity: 0.7;
+      }
+      .board-empty-state p {
+        margin: 0;
+        font-family: var(--disp);
+        font-size: 1.1rem;
+        color: var(--ink2);
+      }
+      .board-empty-state span {
+        font-size: 0.8rem;
+        color: var(--tx2);
+      }
+      .upload-btn {
+        margin-top: 0.3rem;
+        padding: 0.7rem 1.4rem;
+        border: none;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--aqua), var(--azure));
+        color: #fff;
+        font: 600 0.9rem/1 var(--body);
+        cursor: pointer;
+        box-shadow: 0 6px 18px -6px rgba(47, 143, 220, 0.5);
+        transition: all 0.2s;
+      }
+      .upload-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px -8px rgba(47, 143, 220, 0.6);
+      }
+      .fab-add {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, var(--aqua), var(--azure));
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 8px 24px -4px rgba(47, 143, 220, 0.6);
+        z-index: 50;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.25s;
+      }
+      .fab-add:hover {
+        transform: scale(1.1) rotate(90deg);
+        box-shadow: 0 12px 32px -6px rgba(47, 143, 220, 0.7);
+      }
+      .fab-add.show {
+        display: flex;
+      }
+      .fab-add svg {
+        width: 28px;
+        height: 28px;
+      }
+      @media (max-width: 560px) {
+        .fab-add {
+          bottom: 20px;
+          right: 20px;
+          width: 52px;
+          height: 52px;
+        }
+      }
+      .polaroid {
+        position: absolute;
+        width: 160px;
+        background: #fff;
+        padding: 10px 10px 36px;
+        border-radius: 3px;
+        box-shadow: 0 8px 24px -6px rgba(20, 60, 100, 0.25),
+                    0 2px 6px rgba(0,0,0,0.08);
+        cursor: grab;
+        transition: box-shadow 0.2s, z-index 0s;
+        touch-action: none;
+        user-select: none;
+      }
+      .polaroid:hover {
+        box-shadow: 0 14px 36px -8px rgba(20, 60, 100, 0.35),
+                    0 4px 10px rgba(0,0,0,0.12);
+      }
+      .polaroid.dragging {
+        cursor: grabbing;
+        box-shadow: 0 20px 50px -10px rgba(20, 60, 100, 0.4);
+        z-index: 100 !important;
+      }
+      .polaroid img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 2px;
+        pointer-events: none;
+      }
+      .polaroid .caption {
+        position: absolute;
+        bottom: 8px;
+        left: 10px;
+        right: 10px;
+        font-family: var(--disp);
+        font-size: 0.7rem;
+        color: var(--tx);
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .polaroid .delete-btn {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--coral);
+        color: #fff;
+        border: 2px solid #fff;
+        font-size: 12px;
+        line-height: 18px;
+        text-align: center;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .polaroid:hover .delete-btn {
+        opacity: 1;
+      }
+      /* スマホでは削除ボタン常に表示 */
+      @media (hover: none) {
+        .polaroid .delete-btn {
+          opacity: 0.85;
+        }
+      }
+      .album-actions {
+        display: flex;
+        justify-content: center;
+        gap: 0.6rem;
+        margin-top: 1rem;
+      }
+      .album-btn {
+        padding: 0.6rem 1.2rem;
+        border: none;
+        border-radius: 12px;
+        font: 600 0.82rem/1 var(--body);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .album-btn.primary {
+        background: linear-gradient(90deg, var(--aqua), var(--azure));
+        color: #fff;
+        box-shadow: 0 6px 16px -6px rgba(47, 143, 220, 0.6);
+      }
+      .album-btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px -8px rgba(47, 143, 220, 0.7);
+      }
+      .album-btn.secondary {
+        background: var(--glass);
+        color: var(--ink2);
+        border: 1px solid var(--glass-brd);
+      }
+      .album-btn.secondary:hover {
+        background: #fff;
+      }
+      .album-btn .sync-icon {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 4px;
+      }
+      .album-btn.syncing .sync-icon {
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      /* Photo Modal */
+      .photo-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(0, 20, 40, 0.85);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+      }
+      .photo-modal.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .modal-content {
+        position: relative;
+        max-width: 90vw;
+        max-height: 85vh;
+        background: #fff;
+        border-radius: var(--r);
+        padding: 12px 12px 50px;
+        box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.5);
+        transform: scale(0.9);
+        transition: transform 0.3s;
+      }
+      .photo-modal.open .modal-content {
+        transform: scale(1);
+      }
+      .modal-content img {
+        display: block;
+        max-width: 100%;
+        max-height: calc(85vh - 80px);
+        border-radius: 4px;
+        -webkit-touch-callout: default; /* iOS長押しで保存メニュー有効 */
+      }
+      .modal-hint {
+        position: absolute;
+        bottom: 52px;
+        left: 12px;
+        right: 12px;
+        font-size: 0.7rem;
+        color: var(--tx2);
+        text-align: center;
+        display: none;
+      }
+      @media (hover: none) {
+        .modal-hint {
+          display: block;
+        }
+      }
+      .modal-caption {
+        position: absolute;
+        bottom: 14px;
+        left: 12px;
+        right: 70px;
+        font-family: var(--disp);
+        font-size: 0.85rem;
+        color: var(--tx);
+      }
+      .modal-download {
+        position: absolute;
+        bottom: 10px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--azure);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .modal-download:hover {
+        background: var(--deep);
+        transform: scale(1.1);
+      }
+      .modal-download svg {
+        width: 18px;
+        height: 18px;
+      }
+      .modal-close {
+        position: absolute;
+        top: -14px;
+        right: -14px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #fff;
+        border: none;
+        font-size: 20px;
+        color: var(--tx2);
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.2s;
+      }
+      .modal-close:hover {
+        color: var(--coral);
+        transform: scale(1.1);
+      }
+      @media (max-width: 560px) {
+        .polaroid {
+          width: 120px;
+          padding: 7px 7px 28px;
+        }
+        .polaroid .caption {
+          font-size: 0.6rem;
+          bottom: 6px;
+        }
+        .polaroid-board {
+          min-height: 320px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1290,6 +1673,7 @@
     <div class="bubbles" id="bubbles"></div>
     <div id="bar"></div>
     <nav aria-label="セクション" id="nav">
+      <a href="#album"> アルバム </a>
       <a href="#about"> 旅のかたち </a>
       <a href="#flight"> フライト </a>
       <a href="#d1"> Day1 </a>
@@ -1339,6 +1723,50 @@
       </svg>
     </header>
     <main>
+      <!-- Photo Album Section -->
+      <section class="album-section" id="album">
+        <div class="album-inner reveal">
+          <div class="album-header">
+            <h2>思い出のアルバム</h2>
+            <p>旅の写真をここに集めよう</p>
+          </div>
+          <div class="day-tabs">
+            <button class="day-tab active" data-day="all">すべて</button>
+            <button class="day-tab" data-day="day1">Day 1</button>
+            <button class="day-tab" data-day="day2">Day 2</button>
+            <button class="day-tab" data-day="day3">Day 3</button>
+            <button class="day-tab" data-day="day4">Day 4</button>
+          </div>
+          <div class="polaroid-board empty" id="polaroidBoard">
+            <div class="board-empty-state" id="emptyState">
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+              </svg>
+              <p>写真をここにドロップ</p>
+              <span>または</span>
+              <button class="upload-btn" id="uploadBtn">写真を選択</button>
+            </div>
+            <input type="file" id="fileInput" accept="image/*" multiple hidden />
+          </div>
+          <!-- FAB: 写真追加ボタン（写真があるときに表示） -->
+          <button class="fab-add" id="fabAdd" title="写真を追加">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+            </svg>
+          </button>
+          <div class="album-actions">
+            <button class="album-btn secondary" id="syncBtn" title="相手の写真を取得">
+              <svg class="sync-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+              </svg>
+              同期
+            </button>
+            <button class="album-btn secondary" id="shuffleBtn">シャッフル</button>
+            <button class="album-btn primary" id="downloadAllBtn">まとめて保存</button>
+          </div>
+        </div>
+      </section>
+
       <section class="reveal" id="about">
         <div class="eyebrow">Overview</div>
         <h2>旅のかたち</h2>
@@ -2931,6 +3359,22 @@
         </div>
       </section>
     </main>
+
+    <!-- Photo Modal -->
+    <div class="photo-modal" id="photoModal">
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <img id="modalImg" src="" alt="拡大写真" />
+        <div class="modal-hint">長押しで保存できます</div>
+        <div class="modal-caption" id="modalCaption"></div>
+        <button class="modal-download" id="modalDownload" title="保存">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
     <footer>
       <div class="dc">
         <span class="ln"> </span>
@@ -3065,6 +3509,409 @@
         if (L) L.style.translate = x * -14 + "px " + y * -8 + "px";
         if (R) R.style.translate = x * 14 + "px " + y * -8 + "px";
       });
+
+      /* ===== Photo Album ===== */
+      (function() {
+        var CLOUD_NAME = 'defxq9b7t';
+        var UPLOAD_PRESET = 'seol travel';
+        var ALBUM_TAG = 'seoul-trip-2026'; // 共有用タグ
+
+        var board = document.getElementById('polaroidBoard');
+        var fileInput = document.getElementById('fileInput');
+        var uploadBtn = document.getElementById('uploadBtn');
+        var fabAdd = document.getElementById('fabAdd');
+        var modal = document.getElementById('photoModal');
+        var modalImg = document.getElementById('modalImg');
+        var modalCaption = document.getElementById('modalCaption');
+        var modalClose = document.getElementById('modalClose');
+        var modalDownload = document.getElementById('modalDownload');
+        var shuffleBtn = document.getElementById('shuffleBtn');
+        var downloadAllBtn = document.getElementById('downloadAllBtn');
+        var dayTabs = document.querySelectorAll('.day-tab');
+        var syncBtn = document.getElementById('syncBtn');
+
+        // photos: ローカルの配置情報（位置・回転など）
+        // cloudPhotos: Cloudinaryから取得した写真URL一覧
+        var photos = JSON.parse(localStorage.getItem('seoulPhotos') || '[]');
+        var currentFilter = 'all';
+        var currentModalUrl = '';
+        var zIndex = 10;
+
+        function savePhotos() {
+          localStorage.setItem('seoulPhotos', JSON.stringify(photos));
+        }
+
+        // Cloudinaryから写真一覧を取得（タグベース）
+        function fetchCloudPhotos() {
+          var url = 'https://res.cloudinary.com/' + CLOUD_NAME + '/image/list/' + ALBUM_TAG + '.json';
+          return fetch(url)
+            .then(function(res) {
+              if (!res.ok) throw new Error('Not found');
+              return res.json();
+            })
+            .then(function(data) {
+              return data.resources || [];
+            })
+            .catch(function() {
+              return []; // タグがまだない場合は空
+            });
+        }
+
+        // Cloudinaryの写真をローカルとマージ
+        function syncPhotos() {
+          return fetchCloudPhotos().then(function(cloudResources) {
+            var existingIds = photos.map(function(p) { return p.public_id; }).filter(Boolean);
+            var newPhotos = [];
+
+            cloudResources.forEach(function(res) {
+              if (existingIds.indexOf(res.public_id) === -1) {
+                var pos = getRandomPosition();
+                // コンテキストからday情報を取得（あれば）
+                var day = 'day1';
+                if (res.context && res.context.custom && res.context.custom.day) {
+                  day = res.context.custom.day;
+                }
+                newPhotos.push({
+                  url: 'https://res.cloudinary.com/' + CLOUD_NAME + '/image/upload/' + res.public_id + '.' + res.format,
+                  public_id: res.public_id,
+                  day: day,
+                  caption: '',
+                  x: pos.x,
+                  y: pos.y,
+                  rotate: pos.rotate,
+                  z: zIndex++
+                });
+              }
+            });
+
+            if (newPhotos.length > 0) {
+              photos = photos.concat(newPhotos);
+              savePhotos();
+              renderPhotos();
+            }
+          });
+        }
+
+        function getRandomPosition() {
+          var bw = board.offsetWidth - 180;
+          var bh = board.offsetHeight - 200;
+          return {
+            x: Math.max(10, Math.random() * bw),
+            y: Math.max(10, Math.random() * bh),
+            rotate: (Math.random() - 0.5) * 24
+          };
+        }
+
+        function createPolaroid(photo, index) {
+          var div = document.createElement('div');
+          div.className = 'polaroid';
+          div.dataset.index = index;
+          div.dataset.day = photo.day || 'day1';
+          div.style.left = photo.x + 'px';
+          div.style.top = photo.y + 'px';
+          div.style.transform = 'rotate(' + photo.rotate + 'deg)';
+          div.style.zIndex = photo.z || zIndex++;
+
+          var img = document.createElement('img');
+          img.src = photo.url;
+          img.alt = photo.caption || '写真';
+          img.draggable = false;
+
+          var caption = document.createElement('div');
+          caption.className = 'caption';
+          caption.textContent = photo.caption || formatDate(photo.day);
+
+          var delBtn = document.createElement('div');
+          delBtn.className = 'delete-btn';
+          delBtn.textContent = '×';
+          delBtn.onclick = function(e) {
+            e.stopPropagation();
+            if (confirm('この写真を削除しますか？')) {
+              photos.splice(index, 1);
+              savePhotos();
+              renderPhotos();
+            }
+          };
+
+          div.appendChild(img);
+          div.appendChild(caption);
+          div.appendChild(delBtn);
+
+          // Click to open modal
+          div.addEventListener('click', function(e) {
+            if (e.target === delBtn) return;
+            openModal(photo.url, photo.caption || formatDate(photo.day));
+          });
+
+          // Drag functionality
+          makeDraggable(div, index);
+
+          return div;
+        }
+
+        function formatDate(day) {
+          var dates = { day1: '6/6', day2: '6/7', day3: '6/8', day4: '6/9' };
+          return dates[day] || '';
+        }
+
+        function makeDraggable(el, index) {
+          var startX, startY, origX, origY;
+
+          function onStart(e) {
+            e.preventDefault();
+            var touch = e.touches ? e.touches[0] : e;
+            startX = touch.clientX;
+            startY = touch.clientY;
+            origX = el.offsetLeft;
+            origY = el.offsetTop;
+            el.classList.add('dragging');
+            el.style.zIndex = zIndex++;
+
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', onEnd);
+            document.addEventListener('touchmove', onMove, { passive: false });
+            document.addEventListener('touchend', onEnd);
+          }
+
+          function onMove(e) {
+            e.preventDefault();
+            var touch = e.touches ? e.touches[0] : e;
+            var dx = touch.clientX - startX;
+            var dy = touch.clientY - startY;
+            var newX = Math.max(0, Math.min(board.offsetWidth - el.offsetWidth, origX + dx));
+            var newY = Math.max(0, Math.min(board.offsetHeight - el.offsetHeight, origY + dy));
+            el.style.left = newX + 'px';
+            el.style.top = newY + 'px';
+          }
+
+          function onEnd() {
+            el.classList.remove('dragging');
+            photos[index].x = el.offsetLeft;
+            photos[index].y = el.offsetTop;
+            photos[index].z = parseInt(el.style.zIndex);
+            savePhotos();
+
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onEnd);
+            document.removeEventListener('touchmove', onMove);
+            document.removeEventListener('touchend', onEnd);
+          }
+
+          el.addEventListener('mousedown', onStart);
+          el.addEventListener('touchstart', onStart, { passive: false });
+        }
+
+        function renderPhotos() {
+          // Keep empty state element
+          var emptyState = document.getElementById('emptyState');
+          board.innerHTML = '';
+          if (emptyState) board.appendChild(emptyState);
+
+          var filtered = photos.filter(function(p) {
+            return currentFilter === 'all' || p.day === currentFilter;
+          });
+
+          if (filtered.length === 0) {
+            board.classList.add('empty');
+            fabAdd.classList.remove('show');
+          } else {
+            board.classList.remove('empty');
+            fabAdd.classList.add('show');
+            filtered.forEach(function(photo, i) {
+              var realIndex = photos.indexOf(photo);
+              board.appendChild(createPolaroid(photo, realIndex));
+            });
+          }
+        }
+
+        function openModal(url, caption) {
+          currentModalUrl = url;
+          modalImg.src = url;
+          modalCaption.textContent = caption;
+          modal.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+
+        modalClose.onclick = closeModal;
+        modal.onclick = function(e) {
+          if (e.target === modal) closeModal();
+        };
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') closeModal();
+        });
+
+        modalDownload.onclick = function() {
+          var a = document.createElement('a');
+          a.href = currentModalUrl;
+          a.download = 'seoul-memory.jpg';
+          a.target = '_blank';
+          a.click();
+        };
+
+        // Upload handling
+        function uploadToCloudinary(file, day) {
+          var formData = new FormData();
+          formData.append('file', file);
+          formData.append('upload_preset', UPLOAD_PRESET);
+          formData.append('tags', ALBUM_TAG); // 共有用タグを付与
+          formData.append('context', 'day=' + day); // day情報をメタデータに
+
+          return fetch('https://api.cloudinary.com/v1_1/' + CLOUD_NAME + '/image/upload', {
+            method: 'POST',
+            body: formData
+          })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (data.secure_url) {
+              var pos = getRandomPosition();
+              var photo = {
+                url: data.secure_url,
+                public_id: data.public_id,
+                day: day,
+                caption: '',
+                x: pos.x,
+                y: pos.y,
+                rotate: pos.rotate,
+                z: zIndex++
+              };
+              photos.push(photo);
+              savePhotos();
+              renderPhotos();
+            }
+          })
+          .catch(function(err) {
+            console.error('Upload failed:', err);
+            alert('アップロードに失敗しました');
+          });
+        }
+
+        function handleFiles(files) {
+          var activeTab = document.querySelector('.day-tab.active');
+          var day = activeTab ? activeTab.dataset.day : 'day1';
+          if (day === 'all') day = 'day1';
+
+          Array.from(files).forEach(function(file) {
+            if (file.type.startsWith('image/')) {
+              // Cloudinaryにアップロード（設定されている場合）
+              if (CLOUD_NAME !== 'YOUR_CLOUD_NAME') {
+                uploadToCloudinary(file, day);
+              } else {
+                // ローカルプレビュー（Cloudinary未設定時）
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                  var pos = getRandomPosition();
+                  photos.push({
+                    url: e.target.result,
+                    day: day,
+                    caption: '',
+                    x: pos.x,
+                    y: pos.y,
+                    rotate: pos.rotate,
+                    z: zIndex++
+                  });
+                  savePhotos();
+                  renderPhotos();
+                };
+                reader.readAsDataURL(file);
+              }
+            }
+          });
+        }
+
+        fileInput.onchange = function() {
+          handleFiles(this.files);
+          this.value = '';
+        };
+
+        // Upload button & FAB click
+        uploadBtn.onclick = function() {
+          fileInput.click();
+        };
+        fabAdd.onclick = function() {
+          fileInput.click();
+        };
+
+        // Drag & drop on board
+        board.ondragover = function(e) {
+          e.preventDefault();
+          this.classList.add('dragover');
+        };
+        board.ondragleave = function(e) {
+          if (!this.contains(e.relatedTarget)) {
+            this.classList.remove('dragover');
+          }
+        };
+        board.ondrop = function(e) {
+          e.preventDefault();
+          this.classList.remove('dragover');
+          handleFiles(e.dataTransfer.files);
+        };
+
+        // Day tabs
+        dayTabs.forEach(function(tab) {
+          tab.onclick = function() {
+            dayTabs.forEach(function(t) { t.classList.remove('active'); });
+            this.classList.add('active');
+            currentFilter = this.dataset.day;
+            renderPhotos();
+          };
+        });
+
+        // Shuffle
+        shuffleBtn.onclick = function() {
+          photos.forEach(function(p) {
+            var pos = getRandomPosition();
+            p.x = pos.x;
+            p.y = pos.y;
+            p.rotate = pos.rotate;
+          });
+          savePhotos();
+          renderPhotos();
+        };
+
+        // Download all (creates a simple zip or opens all in new tabs)
+        downloadAllBtn.onclick = function() {
+          var filtered = photos.filter(function(p) {
+            return currentFilter === 'all' || p.day === currentFilter;
+          });
+          if (filtered.length === 0) {
+            alert('保存する写真がありません');
+            return;
+          }
+          filtered.forEach(function(p, i) {
+            setTimeout(function() {
+              var a = document.createElement('a');
+              a.href = p.url;
+              a.download = 'seoul-' + (i + 1) + '.jpg';
+              a.target = '_blank';
+              a.click();
+            }, i * 300);
+          });
+        };
+
+        // Sync button
+        if (syncBtn) {
+          syncBtn.onclick = function() {
+            this.classList.add('syncing');
+            var btn = this;
+            syncPhotos().then(function() {
+              btn.classList.remove('syncing');
+            }).catch(function() {
+              btn.classList.remove('syncing');
+            });
+          };
+        }
+
+        // Initial render + auto sync
+        renderPhotos();
+        // 初回読み込み時に自動同期
+        setTimeout(syncPhotos, 500);
+      })();
     </script>
   </body>
 </html>
