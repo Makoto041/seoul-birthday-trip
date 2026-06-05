@@ -1409,7 +1409,7 @@
         cursor: pointer;
         box-shadow: 0 8px 24px -4px rgba(47, 143, 220, 0.6);
         z-index: 50;
-        display: none;
+        display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.25s;
@@ -1417,9 +1417,6 @@
       .fab-add:hover {
         transform: scale(1.1) rotate(90deg);
         box-shadow: 0 12px 32px -6px rgba(47, 143, 220, 0.7);
-      }
-      .fab-add.show {
-        display: flex;
       }
       .fab-add svg {
         width: 28px;
@@ -3594,7 +3591,7 @@
         // 3. 下の BIN_ID は初回保存時に自動作成されます
         var JSONBIN_KEY =
           "$2a$10$ua.33Q1jBqA8cS8dKXSNLe1fc9ANLYKT/cPDviYWysHhGgOWgCNhq"; // ← ここにX-Master-Keyを貼り付け
-        var BIN_ID = "6a22ee97da38895dfe8d1084"; // ← 初回同期後にここにBIN IDが表示されます
+        var BIN_ID = "6a22ef1fda38895dfe8d134f";
 
         var board = document.getElementById("polaroidBoard");
         var fileInput = document.getElementById("fileInput");
