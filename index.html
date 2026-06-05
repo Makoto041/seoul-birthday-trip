@@ -1331,7 +1331,11 @@
       .polaroid-board {
         position: relative;
         min-height: 400px;
-        background: linear-gradient(145deg, rgba(255,255,255,0.3), rgba(230,245,255,0.5));
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.3),
+          rgba(230, 245, 255, 0.5)
+        );
         border-radius: var(--r-lg);
         padding: 1rem;
         overflow: hidden;
@@ -1436,7 +1440,7 @@
         padding: 10px 10px 36px;
         border-radius: 3px;
         box-shadow: 0 8px 24px -6px rgba(20, 60, 100, 0.25),
-                    0 2px 6px rgba(0,0,0,0.08);
+          0 2px 6px rgba(0, 0, 0, 0.08);
         cursor: grab;
         transition: box-shadow 0.2s, z-index 0s;
         touch-action: none;
@@ -1444,7 +1448,7 @@
       }
       .polaroid:hover {
         box-shadow: 0 14px 36px -8px rgba(20, 60, 100, 0.35),
-                    0 4px 10px rgba(0,0,0,0.12);
+          0 4px 10px rgba(0, 0, 0, 0.12);
       }
       .polaroid.dragging {
         cursor: grabbing;
@@ -1537,8 +1541,12 @@
         animation: spin 1s linear infinite;
       }
       @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
       }
       /* Photo Modal */
       .photo-modal {
@@ -1739,30 +1747,74 @@
           </div>
           <div class="polaroid-board empty" id="polaroidBoard">
             <div class="board-empty-state" id="emptyState">
-              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                />
               </svg>
               <p>写真をここにドロップ</p>
               <span>または</span>
               <button class="upload-btn" id="uploadBtn">写真を選択</button>
             </div>
-            <input type="file" id="fileInput" accept="image/*" multiple hidden />
+            <input
+              type="file"
+              id="fileInput"
+              accept="image/*"
+              multiple
+              hidden
+            />
           </div>
           <!-- FAB: 写真追加ボタン（写真があるときに表示） -->
           <button class="fab-add" id="fabAdd" title="写真を追加">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
             </svg>
           </button>
           <div class="album-actions">
-            <button class="album-btn secondary" id="syncBtn" title="相手の写真を取得">
-              <svg class="sync-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            <button
+              class="album-btn secondary"
+              id="syncBtn"
+              title="相手の写真を取得"
+            >
+              <svg
+                class="sync-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
               </svg>
               同期
             </button>
-            <button class="album-btn secondary" id="shuffleBtn">シャッフル</button>
-            <button class="album-btn primary" id="downloadAllBtn">まとめて保存</button>
+            <button class="album-btn secondary" id="shuffleBtn">
+              シャッフル
+            </button>
+            <button class="album-btn primary" id="downloadAllBtn">
+              まとめて保存
+            </button>
           </div>
         </div>
       </section>
@@ -2970,7 +3022,9 @@
           <div class="korean-section">
             <!-- 飲食店で（最頻出） -->
             <details class="korean-cat" open>
-              <summary><span><span class="cat-icon">🍽</span>飲食店で</span></summary>
+              <summary>
+                <span><span class="cat-icon">🍽</span>飲食店で</span>
+              </summary>
               <div class="ph">
                 <div class="phrow">
                   <span class="ko">저기요</span>
@@ -3022,7 +3076,9 @@
 
             <!-- 買い物で -->
             <details class="korean-cat">
-              <summary><span><span class="cat-icon">🛍</span>買い物で</span></summary>
+              <summary>
+                <span><span class="cat-icon">🛍</span>買い物で</span>
+              </summary>
               <div class="ph">
                 <div class="phrow">
                   <span class="ko">얼마예요?</span>
@@ -3059,7 +3115,9 @@
 
             <!-- 基本フレーズ -->
             <details class="korean-cat">
-              <summary><span><span class="cat-icon">💬</span>基本フレーズ</span></summary>
+              <summary>
+                <span><span class="cat-icon">💬</span>基本フレーズ</span>
+              </summary>
               <div class="ph">
                 <div class="phrow">
                   <span class="ko">안녕하세요</span>
@@ -3106,7 +3164,9 @@
 
             <!-- 移動・場所 -->
             <details class="korean-cat">
-              <summary><span><span class="cat-icon">🚶</span>移動・場所</span></summary>
+              <summary>
+                <span><span class="cat-icon">🚶</span>移動・場所</span>
+              </summary>
               <div class="ph">
                 <div class="phrow">
                   <span class="ko">화장실 어디예요?</span>
@@ -3143,7 +3203,9 @@
 
             <!-- 困ったとき -->
             <details class="korean-cat">
-              <summary><span><span class="cat-icon">🆘</span>困ったとき</span></summary>
+              <summary>
+                <span><span class="cat-icon">🆘</span>困ったとき</span>
+              </summary>
               <div class="ph">
                 <div class="phrow">
                   <span class="ko">도와주세요</span>
@@ -3185,7 +3247,9 @@
 
             <!-- 特別な言葉 -->
             <details class="korean-cat">
-              <summary><span><span class="cat-icon">💕</span>特別な言葉</span></summary>
+              <summary>
+                <span><span class="cat-icon">💕</span>特別な言葉</span>
+              </summary>
               <div class="ph">
                 <div class="phrow">
                   <span class="ko">생일 축하해 ♡</span>
@@ -3368,8 +3432,17 @@
         <div class="modal-hint">長押しで保存できます</div>
         <div class="modal-caption" id="modalCaption"></div>
         <button class="modal-download" id="modalDownload" title="保存">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+            />
           </svg>
         </button>
       </div>
@@ -3511,75 +3584,136 @@
       });
 
       /* ===== Photo Album ===== */
-      (function() {
-        var CLOUD_NAME = 'defxq9b7t';
-        var UPLOAD_PRESET = 'seol travel';
-        var ALBUM_TAG = 'seoul-trip-2026'; // 共有用タグ
+      (function () {
+        var CLOUD_NAME = "defxq9b7t";
+        var UPLOAD_PRESET = "seol travel";
 
-        var board = document.getElementById('polaroidBoard');
-        var fileInput = document.getElementById('fileInput');
-        var uploadBtn = document.getElementById('uploadBtn');
-        var fabAdd = document.getElementById('fabAdd');
-        var modal = document.getElementById('photoModal');
-        var modalImg = document.getElementById('modalImg');
-        var modalCaption = document.getElementById('modalCaption');
-        var modalClose = document.getElementById('modalClose');
-        var modalDownload = document.getElementById('modalDownload');
-        var shuffleBtn = document.getElementById('shuffleBtn');
-        var downloadAllBtn = document.getElementById('downloadAllBtn');
-        var dayTabs = document.querySelectorAll('.day-tab');
-        var syncBtn = document.getElementById('syncBtn');
+        // JSONBin.io 設定（無料・簡単な共有用DB）
+        // 1. https://jsonbin.io でアカウント作成
+        // 2. API Keys から X-Master-Key をコピー
+        // 3. 下の BIN_ID は初回保存時に自動作成されます
+        var JSONBIN_KEY =
+          "$2a$10$ua.33Q1jBqA8cS8dKXSNLe1fc9ANLYKT/cPDviYWysHhGgOWgCNhq"; // ← ここにX-Master-Keyを貼り付け
+        var BIN_ID = "6a22ee97da38895dfe8d1084"; // ← 初回同期後にここにBIN IDが表示されます
 
-        // photos: ローカルの配置情報（位置・回転など）
-        // cloudPhotos: Cloudinaryから取得した写真URL一覧
-        var photos = JSON.parse(localStorage.getItem('seoulPhotos') || '[]');
-        var currentFilter = 'all';
-        var currentModalUrl = '';
+        var board = document.getElementById("polaroidBoard");
+        var fileInput = document.getElementById("fileInput");
+        var uploadBtn = document.getElementById("uploadBtn");
+        var fabAdd = document.getElementById("fabAdd");
+        var modal = document.getElementById("photoModal");
+        var modalImg = document.getElementById("modalImg");
+        var modalCaption = document.getElementById("modalCaption");
+        var modalClose = document.getElementById("modalClose");
+        var modalDownload = document.getElementById("modalDownload");
+        var shuffleBtn = document.getElementById("shuffleBtn");
+        var downloadAllBtn = document.getElementById("downloadAllBtn");
+        var dayTabs = document.querySelectorAll(".day-tab");
+        var syncBtn = document.getElementById("syncBtn");
+
+        var photos = JSON.parse(localStorage.getItem("seoulPhotos") || "[]");
+        var currentFilter = "all";
+        var currentModalUrl = "";
         var zIndex = 10;
 
         function savePhotos() {
-          localStorage.setItem('seoulPhotos', JSON.stringify(photos));
+          localStorage.setItem("seoulPhotos", JSON.stringify(photos));
+          // クラウドにも保存（設定されている場合）
+          if (JSONBIN_KEY) {
+            saveToCloud();
+          }
         }
 
-        // Cloudinaryから写真一覧を取得（タグベース）
-        function fetchCloudPhotos() {
-          var url = 'https://res.cloudinary.com/' + CLOUD_NAME + '/image/list/' + ALBUM_TAG + '.json';
-          return fetch(url)
-            .then(function(res) {
-              if (!res.ok) throw new Error('Not found');
+        // JSONBin.ioに保存
+        function saveToCloud() {
+          if (!JSONBIN_KEY) return Promise.resolve();
+
+          var photoData = photos.map(function (p) {
+            return { url: p.url, day: p.day, public_id: p.public_id };
+          });
+
+          if (BIN_ID) {
+            // 既存のBinを更新
+            return fetch("https://api.jsonbin.io/v3/b/" + BIN_ID, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                "X-Master-Key": JSONBIN_KEY,
+              },
+              body: JSON.stringify({ photos: photoData }),
+            });
+          } else {
+            // 新規Binを作成
+            return fetch("https://api.jsonbin.io/v3/b", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-Master-Key": JSONBIN_KEY,
+                "X-Bin-Name": "seoul-trip-album",
+              },
+              body: JSON.stringify({ photos: photoData }),
+            })
+              .then(function (res) {
+                return res.json();
+              })
+              .then(function (data) {
+                if (data.metadata && data.metadata.id) {
+                  console.log("=== JSONBin作成完了 ===");
+                  console.log("BIN_ID:", data.metadata.id);
+                  console.log("↑ この値をコードの BIN_ID に設定してください");
+                  alert(
+                    "共有用BINが作成されました！\nコンソール(F12)にBIN_IDが表示されています。\nそれをコードに設定してください。\n\nBIN_ID: " +
+                      data.metadata.id,
+                  );
+                }
+              });
+          }
+        }
+
+        // JSONBin.ioから取得
+        function fetchFromCloud() {
+          if (!JSONBIN_KEY || !BIN_ID) return Promise.resolve([]);
+
+          return fetch("https://api.jsonbin.io/v3/b/" + BIN_ID + "/latest", {
+            headers: { "X-Master-Key": JSONBIN_KEY },
+          })
+            .then(function (res) {
               return res.json();
             })
-            .then(function(data) {
-              return data.resources || [];
+            .then(function (data) {
+              return (data.record && data.record.photos) || [];
             })
-            .catch(function() {
-              return []; // タグがまだない場合は空
+            .catch(function () {
+              return [];
             });
         }
 
-        // Cloudinaryの写真をローカルとマージ
+        // クラウドの写真をローカルとマージ
         function syncPhotos() {
-          return fetchCloudPhotos().then(function(cloudResources) {
-            var existingIds = photos.map(function(p) { return p.public_id; }).filter(Boolean);
+          if (!JSONBIN_KEY) {
+            alert(
+              "同期するにはJSONBin.ioの設定が必要です。\n\n1. https://jsonbin.io でアカウント作成\n2. API KeysからX-Master-Keyをコピー\n3. コードのJSONBIN_KEYに貼り付け",
+            );
+            return Promise.resolve();
+          }
+
+          return fetchFromCloud().then(function (cloudPhotos) {
+            var existingUrls = photos.map(function (p) {
+              return p.url;
+            });
             var newPhotos = [];
 
-            cloudResources.forEach(function(res) {
-              if (existingIds.indexOf(res.public_id) === -1) {
+            cloudPhotos.forEach(function (cp) {
+              if (existingUrls.indexOf(cp.url) === -1) {
                 var pos = getRandomPosition();
-                // コンテキストからday情報を取得（あれば）
-                var day = 'day1';
-                if (res.context && res.context.custom && res.context.custom.day) {
-                  day = res.context.custom.day;
-                }
                 newPhotos.push({
-                  url: 'https://res.cloudinary.com/' + CLOUD_NAME + '/image/upload/' + res.public_id + '.' + res.format,
-                  public_id: res.public_id,
-                  day: day,
-                  caption: '',
+                  url: cp.url,
+                  public_id: cp.public_id,
+                  day: cp.day || "day1",
+                  caption: "",
                   x: pos.x,
                   y: pos.y,
                   rotate: pos.rotate,
-                  z: zIndex++
+                  z: zIndex++,
                 });
               }
             });
@@ -3588,6 +3722,9 @@
               photos = photos.concat(newPhotos);
               savePhotos();
               renderPhotos();
+              alert(newPhotos.length + "枚の新しい写真を取得しました！");
+            } else {
+              alert("新しい写真はありませんでした");
             }
           });
         }
@@ -3598,35 +3735,35 @@
           return {
             x: Math.max(10, Math.random() * bw),
             y: Math.max(10, Math.random() * bh),
-            rotate: (Math.random() - 0.5) * 24
+            rotate: (Math.random() - 0.5) * 24,
           };
         }
 
         function createPolaroid(photo, index) {
-          var div = document.createElement('div');
-          div.className = 'polaroid';
+          var div = document.createElement("div");
+          div.className = "polaroid";
           div.dataset.index = index;
-          div.dataset.day = photo.day || 'day1';
-          div.style.left = photo.x + 'px';
-          div.style.top = photo.y + 'px';
-          div.style.transform = 'rotate(' + photo.rotate + 'deg)';
+          div.dataset.day = photo.day || "day1";
+          div.style.left = photo.x + "px";
+          div.style.top = photo.y + "px";
+          div.style.transform = "rotate(" + photo.rotate + "deg)";
           div.style.zIndex = photo.z || zIndex++;
 
-          var img = document.createElement('img');
+          var img = document.createElement("img");
           img.src = photo.url;
-          img.alt = photo.caption || '写真';
+          img.alt = photo.caption || "写真";
           img.draggable = false;
 
-          var caption = document.createElement('div');
-          caption.className = 'caption';
+          var caption = document.createElement("div");
+          caption.className = "caption";
           caption.textContent = photo.caption || formatDate(photo.day);
 
-          var delBtn = document.createElement('div');
-          delBtn.className = 'delete-btn';
-          delBtn.textContent = '×';
-          delBtn.onclick = function(e) {
+          var delBtn = document.createElement("div");
+          delBtn.className = "delete-btn";
+          delBtn.textContent = "×";
+          delBtn.onclick = function (e) {
             e.stopPropagation();
-            if (confirm('この写真を削除しますか？')) {
+            if (confirm("この写真を削除しますか？")) {
               photos.splice(index, 1);
               savePhotos();
               renderPhotos();
@@ -3638,7 +3775,7 @@
           div.appendChild(delBtn);
 
           // Click to open modal
-          div.addEventListener('click', function(e) {
+          div.addEventListener("click", function (e) {
             if (e.target === delBtn) return;
             openModal(photo.url, photo.caption || formatDate(photo.day));
           });
@@ -3650,8 +3787,8 @@
         }
 
         function formatDate(day) {
-          var dates = { day1: '6/6', day2: '6/7', day3: '6/8', day4: '6/9' };
-          return dates[day] || '';
+          var dates = { day1: "6/6", day2: "6/7", day3: "6/8", day4: "6/9" };
+          return dates[day] || "";
         }
 
         function makeDraggable(el, index) {
@@ -3664,13 +3801,13 @@
             startY = touch.clientY;
             origX = el.offsetLeft;
             origY = el.offsetTop;
-            el.classList.add('dragging');
+            el.classList.add("dragging");
             el.style.zIndex = zIndex++;
 
-            document.addEventListener('mousemove', onMove);
-            document.addEventListener('mouseup', onEnd);
-            document.addEventListener('touchmove', onMove, { passive: false });
-            document.addEventListener('touchend', onEnd);
+            document.addEventListener("mousemove", onMove);
+            document.addEventListener("mouseup", onEnd);
+            document.addEventListener("touchmove", onMove, { passive: false });
+            document.addEventListener("touchend", onEnd);
           }
 
           function onMove(e) {
@@ -3678,46 +3815,52 @@
             var touch = e.touches ? e.touches[0] : e;
             var dx = touch.clientX - startX;
             var dy = touch.clientY - startY;
-            var newX = Math.max(0, Math.min(board.offsetWidth - el.offsetWidth, origX + dx));
-            var newY = Math.max(0, Math.min(board.offsetHeight - el.offsetHeight, origY + dy));
-            el.style.left = newX + 'px';
-            el.style.top = newY + 'px';
+            var newX = Math.max(
+              0,
+              Math.min(board.offsetWidth - el.offsetWidth, origX + dx),
+            );
+            var newY = Math.max(
+              0,
+              Math.min(board.offsetHeight - el.offsetHeight, origY + dy),
+            );
+            el.style.left = newX + "px";
+            el.style.top = newY + "px";
           }
 
           function onEnd() {
-            el.classList.remove('dragging');
+            el.classList.remove("dragging");
             photos[index].x = el.offsetLeft;
             photos[index].y = el.offsetTop;
             photos[index].z = parseInt(el.style.zIndex);
             savePhotos();
 
-            document.removeEventListener('mousemove', onMove);
-            document.removeEventListener('mouseup', onEnd);
-            document.removeEventListener('touchmove', onMove);
-            document.removeEventListener('touchend', onEnd);
+            document.removeEventListener("mousemove", onMove);
+            document.removeEventListener("mouseup", onEnd);
+            document.removeEventListener("touchmove", onMove);
+            document.removeEventListener("touchend", onEnd);
           }
 
-          el.addEventListener('mousedown', onStart);
-          el.addEventListener('touchstart', onStart, { passive: false });
+          el.addEventListener("mousedown", onStart);
+          el.addEventListener("touchstart", onStart, { passive: false });
         }
 
         function renderPhotos() {
           // Keep empty state element
-          var emptyState = document.getElementById('emptyState');
-          board.innerHTML = '';
+          var emptyState = document.getElementById("emptyState");
+          board.innerHTML = "";
           if (emptyState) board.appendChild(emptyState);
 
-          var filtered = photos.filter(function(p) {
-            return currentFilter === 'all' || p.day === currentFilter;
+          var filtered = photos.filter(function (p) {
+            return currentFilter === "all" || p.day === currentFilter;
           });
 
           if (filtered.length === 0) {
-            board.classList.add('empty');
-            fabAdd.classList.remove('show');
+            board.classList.add("empty");
+            fabAdd.classList.remove("show");
           } else {
-            board.classList.remove('empty');
-            fabAdd.classList.add('show');
-            filtered.forEach(function(photo, i) {
+            board.classList.remove("empty");
+            fabAdd.classList.add("show");
+            filtered.forEach(function (photo, i) {
               var realIndex = photos.indexOf(photo);
               board.appendChild(createPolaroid(photo, realIndex));
             });
@@ -3728,91 +3871,94 @@
           currentModalUrl = url;
           modalImg.src = url;
           modalCaption.textContent = caption;
-          modal.classList.add('open');
-          document.body.style.overflow = 'hidden';
+          modal.classList.add("open");
+          document.body.style.overflow = "hidden";
         }
 
         function closeModal() {
-          modal.classList.remove('open');
-          document.body.style.overflow = '';
+          modal.classList.remove("open");
+          document.body.style.overflow = "";
         }
 
         modalClose.onclick = closeModal;
-        modal.onclick = function(e) {
+        modal.onclick = function (e) {
           if (e.target === modal) closeModal();
         };
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') closeModal();
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") closeModal();
         });
 
-        modalDownload.onclick = function() {
-          var a = document.createElement('a');
+        modalDownload.onclick = function () {
+          var a = document.createElement("a");
           a.href = currentModalUrl;
-          a.download = 'seoul-memory.jpg';
-          a.target = '_blank';
+          a.download = "seoul-memory.jpg";
+          a.target = "_blank";
           a.click();
         };
 
         // Upload handling
         function uploadToCloudinary(file, day) {
           var formData = new FormData();
-          formData.append('file', file);
-          formData.append('upload_preset', UPLOAD_PRESET);
-          formData.append('tags', ALBUM_TAG); // 共有用タグを付与
-          formData.append('context', 'day=' + day); // day情報をメタデータに
+          formData.append("file", file);
+          formData.append("upload_preset", UPLOAD_PRESET);
 
-          return fetch('https://api.cloudinary.com/v1_1/' + CLOUD_NAME + '/image/upload', {
-            method: 'POST',
-            body: formData
-          })
-          .then(function(res) { return res.json(); })
-          .then(function(data) {
-            if (data.secure_url) {
-              var pos = getRandomPosition();
-              var photo = {
-                url: data.secure_url,
-                public_id: data.public_id,
-                day: day,
-                caption: '',
-                x: pos.x,
-                y: pos.y,
-                rotate: pos.rotate,
-                z: zIndex++
-              };
-              photos.push(photo);
-              savePhotos();
-              renderPhotos();
-            }
-          })
-          .catch(function(err) {
-            console.error('Upload failed:', err);
-            alert('アップロードに失敗しました');
-          });
+          return fetch(
+            "https://api.cloudinary.com/v1_1/" + CLOUD_NAME + "/image/upload",
+            {
+              method: "POST",
+              body: formData,
+            },
+          )
+            .then(function (res) {
+              return res.json();
+            })
+            .then(function (data) {
+              if (data.secure_url) {
+                var pos = getRandomPosition();
+                var photo = {
+                  url: data.secure_url,
+                  public_id: data.public_id,
+                  day: day,
+                  caption: "",
+                  x: pos.x,
+                  y: pos.y,
+                  rotate: pos.rotate,
+                  z: zIndex++,
+                };
+                photos.push(photo);
+                savePhotos();
+                renderPhotos();
+              }
+            })
+            .catch(function (err) {
+              console.error("Upload failed:", err);
+              alert("アップロードに失敗しました");
+            });
         }
 
         function handleFiles(files) {
-          var activeTab = document.querySelector('.day-tab.active');
-          var day = activeTab ? activeTab.dataset.day : 'day1';
-          if (day === 'all') day = 'day1';
+          var activeTab = document.querySelector(".day-tab.active");
+          var day = activeTab ? activeTab.dataset.day : "day1";
+          if (day === "all") day = "day1";
 
-          Array.from(files).forEach(function(file) {
-            if (file.type.startsWith('image/')) {
+          Array.from(files).forEach(function (file) {
+            if (file.type.startsWith("image/")) {
               // Cloudinaryにアップロード（設定されている場合）
-              if (CLOUD_NAME !== 'YOUR_CLOUD_NAME') {
+              if (CLOUD_NAME !== "YOUR_CLOUD_NAME") {
                 uploadToCloudinary(file, day);
               } else {
                 // ローカルプレビュー（Cloudinary未設定時）
                 var reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                   var pos = getRandomPosition();
                   photos.push({
                     url: e.target.result,
                     day: day,
-                    caption: '',
+                    caption: "",
                     x: pos.x,
                     y: pos.y,
                     rotate: pos.rotate,
-                    z: zIndex++
+                    z: zIndex++,
                   });
                   savePhotos();
                   renderPhotos();
@@ -3823,48 +3969,50 @@
           });
         }
 
-        fileInput.onchange = function() {
+        fileInput.onchange = function () {
           handleFiles(this.files);
-          this.value = '';
+          this.value = "";
         };
 
         // Upload button & FAB click
-        uploadBtn.onclick = function() {
+        uploadBtn.onclick = function () {
           fileInput.click();
         };
-        fabAdd.onclick = function() {
+        fabAdd.onclick = function () {
           fileInput.click();
         };
 
         // Drag & drop on board
-        board.ondragover = function(e) {
+        board.ondragover = function (e) {
           e.preventDefault();
-          this.classList.add('dragover');
+          this.classList.add("dragover");
         };
-        board.ondragleave = function(e) {
+        board.ondragleave = function (e) {
           if (!this.contains(e.relatedTarget)) {
-            this.classList.remove('dragover');
+            this.classList.remove("dragover");
           }
         };
-        board.ondrop = function(e) {
+        board.ondrop = function (e) {
           e.preventDefault();
-          this.classList.remove('dragover');
+          this.classList.remove("dragover");
           handleFiles(e.dataTransfer.files);
         };
 
         // Day tabs
-        dayTabs.forEach(function(tab) {
-          tab.onclick = function() {
-            dayTabs.forEach(function(t) { t.classList.remove('active'); });
-            this.classList.add('active');
+        dayTabs.forEach(function (tab) {
+          tab.onclick = function () {
+            dayTabs.forEach(function (t) {
+              t.classList.remove("active");
+            });
+            this.classList.add("active");
             currentFilter = this.dataset.day;
             renderPhotos();
           };
         });
 
         // Shuffle
-        shuffleBtn.onclick = function() {
-          photos.forEach(function(p) {
+        shuffleBtn.onclick = function () {
+          photos.forEach(function (p) {
             var pos = getRandomPosition();
             p.x = pos.x;
             p.y = pos.y;
@@ -3875,20 +4023,20 @@
         };
 
         // Download all (creates a simple zip or opens all in new tabs)
-        downloadAllBtn.onclick = function() {
-          var filtered = photos.filter(function(p) {
-            return currentFilter === 'all' || p.day === currentFilter;
+        downloadAllBtn.onclick = function () {
+          var filtered = photos.filter(function (p) {
+            return currentFilter === "all" || p.day === currentFilter;
           });
           if (filtered.length === 0) {
-            alert('保存する写真がありません');
+            alert("保存する写真がありません");
             return;
           }
-          filtered.forEach(function(p, i) {
-            setTimeout(function() {
-              var a = document.createElement('a');
+          filtered.forEach(function (p, i) {
+            setTimeout(function () {
+              var a = document.createElement("a");
               a.href = p.url;
-              a.download = 'seoul-' + (i + 1) + '.jpg';
-              a.target = '_blank';
+              a.download = "seoul-" + (i + 1) + ".jpg";
+              a.target = "_blank";
               a.click();
             }, i * 300);
           });
@@ -3896,21 +4044,52 @@
 
         // Sync button
         if (syncBtn) {
-          syncBtn.onclick = function() {
-            this.classList.add('syncing');
+          syncBtn.onclick = function () {
+            this.classList.add("syncing");
             var btn = this;
-            syncPhotos().then(function() {
-              btn.classList.remove('syncing');
-            }).catch(function() {
-              btn.classList.remove('syncing');
-            });
+            syncPhotos()
+              .then(function () {
+                btn.classList.remove("syncing");
+              })
+              .catch(function () {
+                btn.classList.remove("syncing");
+              });
           };
         }
 
-        // Initial render + auto sync
+        // Initial render
         renderPhotos();
-        // 初回読み込み時に自動同期
-        setTimeout(syncPhotos, 500);
+        // 自動同期（JSONBin設定済みの場合のみ、静かに実行）
+        if (JSONBIN_KEY && BIN_ID) {
+          setTimeout(function () {
+            fetchFromCloud().then(function (cloudPhotos) {
+              var existingUrls = photos.map(function (p) {
+                return p.url;
+              });
+              var newPhotos = [];
+              cloudPhotos.forEach(function (cp) {
+                if (existingUrls.indexOf(cp.url) === -1) {
+                  var pos = getRandomPosition();
+                  newPhotos.push({
+                    url: cp.url,
+                    public_id: cp.public_id,
+                    day: cp.day || "day1",
+                    caption: "",
+                    x: pos.x,
+                    y: pos.y,
+                    rotate: pos.rotate,
+                    z: zIndex++,
+                  });
+                }
+              });
+              if (newPhotos.length > 0) {
+                photos = photos.concat(newPhotos);
+                localStorage.setItem("seoulPhotos", JSON.stringify(photos));
+                renderPhotos();
+              }
+            });
+          }, 500);
+        }
       })();
     </script>
   </body>
