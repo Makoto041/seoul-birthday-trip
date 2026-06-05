@@ -689,6 +689,61 @@
         font-size: 0.74rem;
         color: var(--tx2);
       }
+      .rd {
+        font-size: 0.72rem;
+        color: var(--tx3);
+        margin-top: 0.1rem;
+      }
+      /* Korean Accordion */
+      .korean-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .korean-cat {
+        background: var(--glass);
+        border: 1px solid var(--glass-brd);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .korean-cat summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.7rem 1rem;
+        cursor: pointer;
+        list-style: none;
+        font-family: var(--disp);
+        font-weight: 600;
+        font-size: 0.92rem;
+        color: var(--ink);
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .korean-cat summary::-webkit-details-marker {
+        display: none;
+      }
+      .korean-cat summary::after {
+        content: "+";
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--tx2);
+        transition: transform 0.2s;
+      }
+      .korean-cat[open] summary::after {
+        content: "−";
+      }
+      .cat-icon {
+        margin-right: 0.5rem;
+      }
+      .korean-cat .ph {
+        padding: 0 0.8rem 0.8rem;
+        gap: 0.4rem;
+      }
+      .korean-cat .phrow {
+        padding: 0.5rem 0.7rem;
+        border-radius: 8px;
+      }
       .day {
         position: relative;
         border-radius: var(--r-lg);
@@ -2481,34 +2536,261 @@
           </div>
         </div>
         <div style="margin-top: 1.4rem">
-          <div class="eyebrow" style="display: block; margin-bottom: 0.3rem">
+          <div class="eyebrow" style="display: block; margin-bottom: 0.5rem">
             Useful Korean
           </div>
-          <div class="ph">
-            <div class="phrow">
-              <span class="ko"> 안녕하세요 </span>
-              <span class="ja"> こんにちは </span>
-            </div>
-            <div class="phrow">
-              <span class="ko"> 감사합니다 </span>
-              <span class="ja"> ありがとう </span>
-            </div>
-            <div class="phrow">
-              <span class="ko"> 안 맵게 해주세요 </span>
-              <span class="ja"> 辛くしないでください </span>
-            </div>
-            <div class="phrow">
-              <span class="ko"> 생일 축하해 ♡ </span>
-              <span class="ja"> 誕生日おめでとう </span>
-            </div>
-            <div class="phrow">
-              <span class="ko"> 계산해 주세요 </span>
-              <span class="ja"> お会計お願いします </span>
-            </div>
-            <div class="phrow">
-              <span class="ko"> 화장실 어디예요? </span>
-              <span class="ja"> トイレはどこ？ </span>
-            </div>
+          <div class="korean-section">
+            <!-- 飲食店で（最頻出） -->
+            <details class="korean-cat" open>
+              <summary><span><span class="cat-icon">🍽</span>飲食店で</span></summary>
+              <div class="ph">
+                <div class="phrow">
+                  <span class="ko">저기요</span>
+                  <span class="rd">チョギヨ</span>
+                  <span class="ja">すみません（店員を呼ぶ）</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">이거 주세요</span>
+                  <span class="rd">イゴ チュセヨ</span>
+                  <span class="ja">これください</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">주문할게요</span>
+                  <span class="rd">チュムナルケヨ</span>
+                  <span class="ja">注文します</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">물 주세요</span>
+                  <span class="rd">ムル チュセヨ</span>
+                  <span class="ja">お水ください</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">안 맵게 해주세요</span>
+                  <span class="rd">アン メプケ ヘジュセヨ</span>
+                  <span class="ja">辛くしないでください</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">계산해 주세요</span>
+                  <span class="rd">ケサネ チュセヨ</span>
+                  <span class="ja">お会計お願いします</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">맛있어요!</span>
+                  <span class="rd">マシッソヨ！</span>
+                  <span class="ja">おいしいです！</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">배불러요</span>
+                  <span class="rd">ペブルロヨ</span>
+                  <span class="ja">お腹いっぱいです</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">포장해 주세요</span>
+                  <span class="rd">ポジャンヘ チュセヨ</span>
+                  <span class="ja">持ち帰りにしてください</span>
+                </div>
+              </div>
+            </details>
+
+            <!-- 買い物で -->
+            <details class="korean-cat">
+              <summary><span><span class="cat-icon">🛍</span>買い物で</span></summary>
+              <div class="ph">
+                <div class="phrow">
+                  <span class="ko">얼마예요?</span>
+                  <span class="rd">オルマエヨ？</span>
+                  <span class="ja">いくらですか？</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">이거 주세요</span>
+                  <span class="rd">イゴ チュセヨ</span>
+                  <span class="ja">これください</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">카드 돼요?</span>
+                  <span class="rd">カドゥ テヨ？</span>
+                  <span class="ja">カード使えますか？</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">봉투 주세요</span>
+                  <span class="rd">ポントゥ チュセヨ</span>
+                  <span class="ja">袋ください</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">깎아 주세요</span>
+                  <span class="rd">ッカッカ チュセヨ</span>
+                  <span class="ja">まけてください</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">다른 색 있어요?</span>
+                  <span class="rd">タルン セク イッソヨ？</span>
+                  <span class="ja">他の色ありますか？</span>
+                </div>
+              </div>
+            </details>
+
+            <!-- 基本フレーズ -->
+            <details class="korean-cat">
+              <summary><span><span class="cat-icon">💬</span>基本フレーズ</span></summary>
+              <div class="ph">
+                <div class="phrow">
+                  <span class="ko">안녕하세요</span>
+                  <span class="rd">アンニョンハセヨ</span>
+                  <span class="ja">こんにちは</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">감사합니다</span>
+                  <span class="rd">カムサハムニダ</span>
+                  <span class="ja">ありがとうございます</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">고마워요</span>
+                  <span class="rd">コマウォヨ</span>
+                  <span class="ja">ありがとう（カジュアル）</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">죄송합니다</span>
+                  <span class="rd">チェソンハムニダ</span>
+                  <span class="ja">すみません / ごめんなさい</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">네 / 아니요</span>
+                  <span class="rd">ネ / アニヨ</span>
+                  <span class="ja">はい / いいえ</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">괜찮아요</span>
+                  <span class="rd">ケンチャナヨ</span>
+                  <span class="ja">大丈夫です</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">몰라요</span>
+                  <span class="rd">モルラヨ</span>
+                  <span class="ja">わかりません</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">잠시만요</span>
+                  <span class="rd">チャムシマンニョ</span>
+                  <span class="ja">ちょっと待ってください</span>
+                </div>
+              </div>
+            </details>
+
+            <!-- 移動・場所 -->
+            <details class="korean-cat">
+              <summary><span><span class="cat-icon">🚶</span>移動・場所</span></summary>
+              <div class="ph">
+                <div class="phrow">
+                  <span class="ko">화장실 어디예요?</span>
+                  <span class="rd">ファジャンシル オディエヨ？</span>
+                  <span class="ja">トイレはどこですか？</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">여기요</span>
+                  <span class="rd">ヨギヨ</span>
+                  <span class="ja">ここです</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">어디예요?</span>
+                  <span class="rd">オディエヨ？</span>
+                  <span class="ja">どこですか？</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">지하철역 어디예요?</span>
+                  <span class="rd">チハチョルヨク オディエヨ？</span>
+                  <span class="ja">地下鉄駅はどこですか？</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">택시 타고 싶어요</span>
+                  <span class="rd">テクシ タゴ シッポヨ</span>
+                  <span class="ja">タクシーに乗りたいです</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">여기서 내려 주세요</span>
+                  <span class="rd">ヨギソ ネリョ チュセヨ</span>
+                  <span class="ja">ここで降ろしてください</span>
+                </div>
+              </div>
+            </details>
+
+            <!-- 困ったとき -->
+            <details class="korean-cat">
+              <summary><span><span class="cat-icon">🆘</span>困ったとき</span></summary>
+              <div class="ph">
+                <div class="phrow">
+                  <span class="ko">도와주세요</span>
+                  <span class="rd">トワジュセヨ</span>
+                  <span class="ja">助けてください</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">영어 돼요?</span>
+                  <span class="rd">ヨンオ テヨ？</span>
+                  <span class="ja">英語できますか？</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">일본어 돼요?</span>
+                  <span class="rd">イルボノ テヨ？</span>
+                  <span class="ja">日本語できますか？</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">다시 한번요</span>
+                  <span class="rd">タシ ハンボニョ</span>
+                  <span class="ja">もう一度お願いします</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">천천히요</span>
+                  <span class="rd">チョンチョニヨ</span>
+                  <span class="ja">ゆっくりお願いします</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">WiFi 비밀번호 뭐예요?</span>
+                  <span class="rd">ワイパイ ピミルボノ ムォエヨ？</span>
+                  <span class="ja">WiFiのパスワードは？</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">사진 찍어도 돼요?</span>
+                  <span class="rd">サジン ッチゴド テヨ？</span>
+                  <span class="ja">写真撮ってもいいですか？</span>
+                </div>
+              </div>
+            </details>
+
+            <!-- 特別な言葉 -->
+            <details class="korean-cat">
+              <summary><span><span class="cat-icon">💕</span>特別な言葉</span></summary>
+              <div class="ph">
+                <div class="phrow">
+                  <span class="ko">생일 축하해 ♡</span>
+                  <span class="rd">センイル チュッカヘ ♡</span>
+                  <span class="ja">誕生日おめでとう</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">사랑해</span>
+                  <span class="rd">サランヘ</span>
+                  <span class="ja">愛してる</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">보고 싶어</span>
+                  <span class="rd">ポゴ シッポ</span>
+                  <span class="ja">会いたい</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">행복해</span>
+                  <span class="rd">ヘンボケ</span>
+                  <span class="ja">幸せ</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">최고야!</span>
+                  <span class="rd">チェゴヤ！</span>
+                  <span class="ja">最高！</span>
+                </div>
+                <div class="phrow">
+                  <span class="ko">화이팅!</span>
+                  <span class="rd">ファイティン！</span>
+                  <span class="ja">頑張って！</span>
+                </div>
+              </div>
+            </details>
           </div>
         </div>
       </section>
@@ -2537,7 +2819,6 @@
                 stroke="none"
               ></circle>
             </svg>
-            <p>ここは特別なやつ。まだナイショね</p>
             <div class="row">
               <input
                 aria-label="合言葉"
