@@ -3495,17 +3495,43 @@
         io.observe(el);
       });
 
+      /* 一度合言葉を解除したら、しばらく（既定12時間）解除状態を保持する */
+      var UNLOCK_HOURS = 12;
+      var UNLOCK_MS = UNLOCK_HOURS * 60 * 60 * 1000;
+      function unlockKey(day) {
+        return "gate_unlock_" + day;
+      }
+      function isUnlocked(day) {
+        try {
+          var ts = parseInt(localStorage.getItem(unlockKey(day)), 10);
+          return !!ts && Date.now() - ts < UNLOCK_MS;
+        } catch (e) {
+          return false;
+        }
+      }
+      function rememberUnlock(day) {
+        try {
+          localStorage.setItem(unlockKey(day), String(Date.now()));
+        } catch (e) {}
+      }
+
       document.querySelectorAll(".gate").forEach(function (g) {
         var day = g.getAttribute("data-day");
         var inp = g.querySelector("input"),
           btn = g.querySelector("button"),
           err = g.querySelector(".err");
         var tl = g.parentElement.querySelector(".tl");
+        function open() {
+          g.style.display = "none";
+          tl.classList.remove("locked");
+          tl.classList.add("open");
+        }
+        /* 期限内なら最初から解除しておく */
+        if (isUnlocked(day)) open();
         function tryOpen() {
           if (inp.value.trim() === DAY_PASSWORDS[day]) {
-            g.style.display = "none";
-            tl.classList.remove("locked");
-            tl.classList.add("open");
+            rememberUnlock(day);
+            open();
           } else {
             err.textContent = "合言葉が違うみたい…";
             g.animate(
